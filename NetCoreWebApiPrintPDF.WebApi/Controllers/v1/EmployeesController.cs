@@ -3,7 +3,6 @@
     [ApiVersion("1.0")]
     public class EmployeesController : BaseApiController
     {
-
         /// <summary>
         /// Gets a list of employees based on the specified filter.
         /// </summary>
@@ -27,6 +26,5 @@
         {
             return Ok(await Mediator.Send(query));
         }
-
     }
 }

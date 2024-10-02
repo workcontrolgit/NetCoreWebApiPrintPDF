@@ -38,8 +38,6 @@ namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
 
             PdfGenerator.AddPdfPages(document, htmlContent, PageSize.A4);
 
-            //var pdfDocument = PdfGenerator.GeneratePdf(htmlContent, PdfSharp.PageSize.A4, 20);
-
             using (var stream = new MemoryStream())
             {
                 document.Save(stream);

@@ -1,13 +1,4 @@
-﻿using FluentValidation;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using NetCoreWebApiPrintPDF.Application.Behaviours;
-using NetCoreWebApiPrintPDF.Application.Helpers;
-using NetCoreWebApiPrintPDF.Application.Interfaces;
-using NetCoreWebApiPrintPDF.Domain.Entities;
-using System.Reflection;
-
-namespace NetCoreWebApiPrintPDF.Application
+﻿namespace NetCoreWebApiPrintPDF.Application
 {
     public static class ServiceExtensions
     {

@@ -25,6 +25,5 @@
         {
             Employees = new HashSet<Employee>();
         }
-
     }
 }

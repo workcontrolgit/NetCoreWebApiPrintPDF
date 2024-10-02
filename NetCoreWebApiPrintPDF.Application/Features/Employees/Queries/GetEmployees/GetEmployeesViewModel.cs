@@ -1,6 +1,4 @@
-﻿
-
-namespace NetCoreWebApiPrintPDF.Application.Features.Employees.Queries.GetEmployees
+﻿namespace NetCoreWebApiPrintPDF.Application.Features.Employees.Queries.GetEmployees
 {
     public class GetEmployeesViewModel
     {
@@ -16,6 +14,5 @@ namespace NetCoreWebApiPrintPDF.Application.Features.Employees.Queries.GetEmploy
         public string Phone { get; set; }
         public virtual Position Position { get; set; }
         public decimal Salary { get; set; }
-
     }
 }

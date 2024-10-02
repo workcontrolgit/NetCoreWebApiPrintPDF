@@ -16,7 +16,7 @@
     /// <param name="recordsCount">Number of records.</param>
     /// <returns>
     /// Task containing the paged response.
-    /// </returns>    
+    /// </returns>
     public interface IPositionRepositoryAsync : IGenericRepositoryAsync<Position>
     {
         Task<bool> IsUniquePositionNumberAsync(string positionNumber);

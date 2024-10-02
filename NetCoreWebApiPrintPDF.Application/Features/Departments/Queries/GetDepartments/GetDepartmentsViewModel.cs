@@ -1,6 +1,4 @@
-﻿
-
-namespace NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments
+﻿namespace NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments
 {
     public class GetDepartmentsViewModel //: Department
     {

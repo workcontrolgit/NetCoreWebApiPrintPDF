@@ -2,7 +2,6 @@
 {
     public partial class PagedPositionsQuery : QueryParameter, IRequest<PagedDataTableResponse<IEnumerable<Entity>>>
     {
-
         //strong type input parameters
         public int Draw { get; set; } //page number
 

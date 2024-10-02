@@ -7,7 +7,6 @@
         public string PositionDescription { get; set; }
         public Guid DepartmentId { get; set; }
         public Guid SalaryRangeId { get; set; }
-
     }
 
     public class CreatePositionCommandHandler : IRequestHandler<CreatePositionCommand, Response<Guid>>

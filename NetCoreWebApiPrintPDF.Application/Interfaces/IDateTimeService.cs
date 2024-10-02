@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NetCoreWebApiPrintPDF.Application.Interfaces
+﻿namespace NetCoreWebApiPrintPDF.Application.Interfaces
 {
     public interface IDateTimeService
     {
