@@ -1,0 +1,58 @@
+﻿@model NetCoreWebApiPrintPDF.WebApi.Models.CertificateViewModel
+
+<html>
+<head>
+    <style>
+        .certificate {
+            width: 100%;
+            padding: 20px;
+            border: 2px solid black;
+            text-align: center;
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .student-info {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .skills {
+            margin-top: 30px;
+            width: 100%;
+        }
+        .skills th, .skills td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <div class="header">Pickleball Training Certificate</div>
+        <div class="student-info">
+            <p>Student Name: @Model.StudentName</p>
+            <p>Coach: @Model.CoachName</p>
+            <p>Evaluation Date: @Model.EvaluationDate.ToString("MM/dd/yyyy")</p>
+        </div>
+        <table class="skills">
+            <thead>
+                <tr>
+                    <th>Skill</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var skill in Model.SkillGrades)
+                {
+                    <tr>
+                        <td>@skill.SkillName</td>
+                        <td>@skill.Grade</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

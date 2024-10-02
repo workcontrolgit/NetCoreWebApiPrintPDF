@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{5DCE7BEB-DE91-43EB-A272-9F611474DA15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWebApiPrintPDF.WebApi", "NetCoreWebApiPrintPDF.WebApi\NetCoreWebApiPrintPDF.WebApi.csproj", "{C32A0F1E-F024-4E4A-A307-B5FA2D4BCACC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{772210C8-3A66-4DC5-89C1-661605860D3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWebApiPrintPDF.Application", "NetCoreWebApiPrintPDF.Application\NetCoreWebApiPrintPDF.Application.csproj", "{D27224B1-195A-43C5-A44E-34F58C5FBDD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWebApiPrintPDF.Domain", "NetCoreWebApiPrintPDF.Domain\NetCoreWebApiPrintPDF.Domain.csproj", "{A967BC81-6AA9-46F9-B752-6B1BFB66E7C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3752112C-4038-47AE-8E3A-00134BA9C294}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWebApiPrintPDF.Infrastructure.Persistence", "NetCoreWebApiPrintPDF.Infrastructure.Persistence\NetCoreWebApiPrintPDF.Infrastructure.Persistence.csproj", "{F45A2B98-1FF0-45FC-A430-225F5F498286}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWebApiPrintPDF.Infrastructure.Shared", "NetCoreWebApiPrintPDF.Infrastructure.Shared\NetCoreWebApiPrintPDF.Infrastructure.Shared.csproj", "{58E69A45-C741-4518-8C89-353800AF2CC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C32A0F1E-F024-4E4A-A307-B5FA2D4BCACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C32A0F1E-F024-4E4A-A307-B5FA2D4BCACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C32A0F1E-F024-4E4A-A307-B5FA2D4BCACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C32A0F1E-F024-4E4A-A307-B5FA2D4BCACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D27224B1-195A-43C5-A44E-34F58C5FBDD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D27224B1-195A-43C5-A44E-34F58C5FBDD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D27224B1-195A-43C5-A44E-34F58C5FBDD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D27224B1-195A-43C5-A44E-34F58C5FBDD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A967BC81-6AA9-46F9-B752-6B1BFB66E7C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A967BC81-6AA9-46F9-B752-6B1BFB66E7C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A967BC81-6AA9-46F9-B752-6B1BFB66E7C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A967BC81-6AA9-46F9-B752-6B1BFB66E7C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F45A2B98-1FF0-45FC-A430-225F5F498286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F45A2B98-1FF0-45FC-A430-225F5F498286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F45A2B98-1FF0-45FC-A430-225F5F498286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F45A2B98-1FF0-45FC-A430-225F5F498286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58E69A45-C741-4518-8C89-353800AF2CC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E69A45-C741-4518-8C89-353800AF2CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E69A45-C741-4518-8C89-353800AF2CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E69A45-C741-4518-8C89-353800AF2CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C32A0F1E-F024-4E4A-A307-B5FA2D4BCACC} = {5DCE7BEB-DE91-43EB-A272-9F611474DA15}
+		{D27224B1-195A-43C5-A44E-34F58C5FBDD3} = {772210C8-3A66-4DC5-89C1-661605860D3C}
+		{A967BC81-6AA9-46F9-B752-6B1BFB66E7C9} = {772210C8-3A66-4DC5-89C1-661605860D3C}
+		{F45A2B98-1FF0-45FC-A430-225F5F498286} = {3752112C-4038-47AE-8E3A-00134BA9C294}
+		{58E69A45-C741-4518-8C89-353800AF2CC6} = {3752112C-4038-47AE-8E3A-00134BA9C294}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC639EF1-05FF-49EB-BAAC-0C2CBF8C65F5}
+	EndGlobalSection
+EndGlobal
