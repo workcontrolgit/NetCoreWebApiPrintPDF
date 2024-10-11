@@ -1,4 +1,10 @@
-﻿@model NetCoreWebApiPrintPDF.WebApi.Models.CertificateViewModel
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model NetCoreWebApiPrintPDF.WebApi.Models.CertificateViewModel
+
+@{
+    var baseUrl = $"{HttpContextAccessor.HttpContext.Request.Scheme}://{HttpContextAccessor.HttpContext.Request.Host}";
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,37 +22,45 @@
             background-color: white;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
+
         .title {
             font-size: 36px;
             font-weight: bold;
             color: #0a74da;
         }
+
         .subtitle {
             font-size: 24px;
             color: #555;
         }
+
         .content {
             margin-top: 20px;
             font-size: 18px;
         }
+
         .student-name {
             font-size: 28px;
             color: #0a74da;
             font-weight: bold;
         }
+
         .skill-list {
             margin-top: 30px;
             font-size: 16px;
         }
+
         .signature {
             margin-top: 50px;
             font-size: 16px;
             text-align: right;
         }
+
         .logo img {
             width: 120px;
             margin-bottom: 20px;
         }
+
         .signature img {
             width: 100px;
         }
@@ -57,7 +71,8 @@
         <div class="certificate-container p-5">
             <!-- Logo Section -->
             <div class="text-center logo mb-4">
-                <img src="/images/logo-placeholder.png" alt="Pickleball Logo">
+                <img src="@($"{baseUrl}/images/logo.jpg")" alt="Pickleball Logo">
+                @* <img src="https://localhost:44378/images/logo.jpg" alt="Pickleball Logo"> *@
             </div>
 
             <!-- Title and Subtitle -->
@@ -93,7 +108,7 @@
             <div class="signature">
                 <p>Coach: <strong>@Model.CoachName</strong></p>
                 <!-- Signature Image Placeholder -->
-                <img src="/images/signature-placeholder.png" alt="Signature">
+                <img src="/images/logo.jpg" alt="Signature">
             </div>
         </div>
     </div>

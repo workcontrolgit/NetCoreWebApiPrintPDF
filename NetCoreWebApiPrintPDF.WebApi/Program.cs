@@ -31,6 +31,9 @@ try
     // add Razor services to support runtime compilation
     builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
+    // Register IHttpContextAccessor
+    builder.Services.AddHttpContextAccessor();
+
     var app = builder.Build();
 
     Log.Information("Application startup middleware registration");
@@ -54,6 +57,9 @@ try
         app.UseExceptionHandler("/Error");
         app.UseHsts();
     }
+
+    // Enable static files
+    app.UseStaticFiles();
 
     // Add this line; you'll need `using Serilog;` up the top, too
     app.UseSerilogRequestLogging();

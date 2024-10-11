@@ -52,6 +52,7 @@
 
   <ItemGroup>
     <Folder Include="Logs\Error\" />
+	<Content Include="wwwroot\**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
