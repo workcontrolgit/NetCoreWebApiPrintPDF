@@ -1,4 +1,6 @@
-﻿namespace NetCoreWebApiPrintPDF.Infrastructure.Persistence.Repositories
+﻿using NetCoreWebApiPrintPDF.Application.Features.Employees.Queries.ExportEmployees;
+
+namespace NetCoreWebApiPrintPDF.Infrastructure.Persistence.Repositories
 {
     public class EmployeeRepositoryAsync : GenericRepositoryAsync<Employee>, IEmployeeRepositoryAsync
     {
@@ -51,6 +53,69 @@
 
             // filter data
             FilterByColumn(ref result, lastName, firstName, email, positionTitle, employeeNumber);
+
+            // Count records after filter
+            recordsFiltered = await result.CountAsync();
+
+            //set Record counts
+            var recordsCount = new RecordsCount
+            {
+                RecordsFiltered = recordsFiltered,
+                RecordsTotal = recordsTotal
+            };
+
+            // set order by
+            if (!string.IsNullOrWhiteSpace(orderBy))
+            {
+                result = result.OrderBy(orderBy);
+            }
+
+            //limit query fields
+            if (!string.IsNullOrWhiteSpace(fields))
+            {
+                result = result.Select<Employee>("new(" + fields + ")");
+            }
+            // paging
+            result = result
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            // retrieve data to list
+            var resultData = await result.ToListAsync();
+
+            // shape data
+            var shapeData = _dataShaper.ShapeData(resultData, fields);
+
+            return (shapeData, recordsCount);
+        }
+
+        /// <summary>
+        /// Retrieves a paged list of employees based on the provided query parameters.
+        /// </summary>
+        /// <param name="requestParameters">The query parameters used to filter and page the data.</param>
+        /// <returns>A tuple containing the paged list of employees and the total number of records.</returns>
+        public async Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> ExportEmployeeResponseAsync(ExportEmployeesQuery requestParameters)
+        {
+            //searchable fields
+            var positionTitle = requestParameters.PositionTitle;
+
+            var pageNumber = requestParameters.PageNumber;
+            var pageSize = requestParameters.PageSize;
+            var orderBy = requestParameters.OrderBy;
+            var fields = requestParameters.Fields;
+
+            int recordsTotal, recordsFiltered;
+
+            // Setup IQueryable
+            var result = _repository
+                .AsNoTracking()
+                .AsExpandable();
+
+            // Count records total
+            recordsTotal = await result.CountAsync();
+
+            // filter data
+            FilterByColumn(ref result, positionTitle);
 
             // Count records after filter
             recordsFiltered = await result.CountAsync();
