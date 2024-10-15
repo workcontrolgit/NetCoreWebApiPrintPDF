@@ -1,6 +1,6 @@
 ﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
-@model NetCoreWebApiPrintPDF.WebApi.Models.CertificateViewModel
+@model NetCoreWebApiPrintPDF.Domain.Entities.Certificate
 
 @{
     var baseUrl = $"{HttpContextAccessor.HttpContext.Request.Scheme}://{HttpContextAccessor.HttpContext.Request.Host}";
@@ -108,7 +108,7 @@
             <div class="signature">
                 <p>Coach: <strong>@Model.CoachName</strong></p>
                 <!-- Signature Image Placeholder -->
-                <img src="/images/logo.jpg" alt="Signature">
+                <img src="@($"{baseUrl}/images/logo.jpg")" alt="Signature">
             </div>
         </div>
     </div>

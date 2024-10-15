@@ -9,9 +9,10 @@
         /// <param name="filter">The filter used to get the list of employees.</param>
         /// <returns>A list of employees.</returns>
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] GetDepartmentsQuery filter)
+        public async Task<FileResult> Export([FromQuery] GetDepartmentsQuery filter)
         {
-            return Ok(await Mediator.Send(filter));
+            var result = await Mediator.Send(filter);
+            return File(result, "application/pdf", "certificate.pdf");
         }
     }
 }

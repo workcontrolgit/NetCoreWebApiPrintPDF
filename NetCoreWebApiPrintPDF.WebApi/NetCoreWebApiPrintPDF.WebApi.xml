@@ -4,7 +4,7 @@
         <name>NetCoreWebApiPrintPDF.WebApi</name>
     </assembly>
     <members>
-        <member name="M:NetCoreWebApiPrintPDF.WebApi.Controllers.v1.DepartmentsController.Get(NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsQuery)">
+        <member name="M:NetCoreWebApiPrintPDF.WebApi.Controllers.v1.DepartmentsController.Export(NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsQuery)">
             <summary>
             Gets a list of employees based on the specified filter.
             </summary>

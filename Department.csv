@@ -1,0 +1,11 @@
+﻿GetDepartmentsViewModel,GetDepartmentsViewModel.Id,GetDepartmentsViewModel.Name
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,82d81d60-a26c-44d6-9556-263eb2a05f83,"Toys & Movies"
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,f7bc3e3e-4e86-4fd9-ac41-77349ae1cd8e,"Outdoors, Clothing & Beauty"
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,52ae4864-e11c-4a1d-b8ab-da093e96ec95,"Music, Shoes & Baby"
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,6f5f31b9-4acd-45aa-977a-b2ce032cef1a,"Music, Music & Movies"
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,fe39065e-afc8-4003-a79b-e3e00241327e,"Music, Baby & Home"
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,fec70769-f5dc-455b-8db1-5e36c7fa3bd9,Grocery
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,c4bf06f1-02a7-4e74-84f6-a29987feb4bd,"Games & Games"
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,43946371-03d9-413b-9091-49212d5c79dd,"Clothing, Home & Outdoors"
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,d75943f5-2960-446c-938e-fadcb141d2a5,"Clothing, Grocery & Automotive"
+NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments.GetDepartmentsViewModel,e2475995-c158-4ebb-b1f9-6a8bdb31772f,"Automotive & Clothing"

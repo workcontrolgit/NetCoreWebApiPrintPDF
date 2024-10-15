@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
-using NetCoreWebApiPrintPDF.Infrastructure.Shared.Services;
-using NetCoreWebApiPrintPDF.WebApi.Models;
+using NetCoreWebApiPrintPDF.Application.Interfaces;
+using NetCoreWebApiPrintPDF.Domain.Entities;
 using PdfSharpCore;
 using PdfSharpCore.Pdf;
 using System.IO;
@@ -18,9 +18,9 @@ namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
     public class CertificateController : BaseApiController
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly HtmlToPdfService _htmlToPdfService;
+        private readonly IHtmlToPdfService _htmlToPdfService;
 
-        public CertificateController(IServiceProvider serviceProvider, HtmlToPdfService htmlToPdfService)
+        public CertificateController(IServiceProvider serviceProvider, IHtmlToPdfService htmlToPdfService)
         {
             _serviceProvider = serviceProvider;
             _htmlToPdfService = htmlToPdfService;
@@ -125,7 +125,7 @@ namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
         //    ";
 
         [HttpPost("GenerateCertificate")]
-        public async Task<IActionResult> GenerateCertificate([FromBody] CertificateViewModel model, CancellationToken cancellationToken)
+        public async Task<IActionResult> GenerateCertificate([FromBody] Certificate model, CancellationToken cancellationToken)
         {
             var htmlContent = await RenderRazorViewToString(model);
             var pdfBytes = GeneratePdfFromHtml(htmlContent);
@@ -134,7 +134,7 @@ namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
         }
 
         [HttpPost("PrintPdf")]
-        public async Task<FileResult> PrintPdf([FromBody] CertificateViewModel model, CancellationToken cancellationToken)
+        public async Task<FileResult> PrintPdf([FromBody] Certificate model, CancellationToken cancellationToken)
         {
             var htmlContent = await RenderRazorViewToString(model);
             var pdfContent = await _htmlToPdfService.ToByteArray(htmlContent);
@@ -156,7 +156,7 @@ namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
         }
 
         [NonAction]
-        public async Task<string> RenderRazorViewToString(CertificateViewModel model)
+        public async Task<string> RenderRazorViewToString(Certificate model)
         {
             var viewEngine = _serviceProvider.GetRequiredService<IRazorViewEngine>();
             var tempDataProvider = _serviceProvider.GetRequiredService<ITempDataProvider>();
@@ -168,9 +168,7 @@ namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
 
             using (var sw = new StringWriter())
             {
-                //var viewResult = viewEngine.FindView(actionContext, "~/Views/CertificateTemplate", false);
-
-                var viewResult = viewEngine.GetView("~/Views/CertificateTemplate.cshtml", "~/Views/CertificateTemplate.cshtml", false);
+                var viewResult = viewEngine.GetView("~/Views/CertificateTemplate.cshtml", "~/Views/CertificateTemplate.cshtml", true);
 
                 if (viewResult.View == null)
                 {

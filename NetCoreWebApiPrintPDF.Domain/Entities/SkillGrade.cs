@@ -1,4 +1,4 @@
-﻿namespace NetCoreWebApiPrintPDF.WebApi.Models
+﻿namespace NetCoreWebApiPrintPDF.Domain.Entities
 {
     public class SkillGrade
     {

@@ -1,4 +1,6 @@
-﻿namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
+﻿using NetCoreWebApiPrintPDF.Application.Features.Employees.Queries.ExportEmployees;
+
+namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
 {
     [ApiVersion("1.0")]
     public class EmployeesController : BaseApiController
@@ -10,6 +12,13 @@
         /// <returns>A list of employees.</returns>
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] GetEmployeesQuery filter)
+        {
+            return Ok(await Mediator.Send(filter));
+        }
+
+        [HttpGet]
+        [Route("Export")]
+        public async Task<IActionResult> Export([FromQuery] ExportEmployeesQuery filter)
         {
             return Ok(await Mediator.Send(filter));
         }

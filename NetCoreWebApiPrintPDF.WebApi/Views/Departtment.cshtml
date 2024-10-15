@@ -1,0 +1,21 @@
+﻿@model NetCoreWebApiPrintPDF.WebApi.Models.DepartmentListModel
+
+<h2>Department List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Department ID</th>
+            <th>Department Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var department in Model.Departments)
+        {
+            <tr>
+                <td>@department.Id</td>
+                <td>@department.Name</td>
+            </tr>
+        }
+        </tbody>
+</table>

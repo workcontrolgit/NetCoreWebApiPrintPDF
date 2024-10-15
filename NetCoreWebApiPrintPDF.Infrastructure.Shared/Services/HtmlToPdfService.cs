@@ -3,7 +3,7 @@ using PuppeteerSharp.Media;
 
 namespace NetCoreWebApiPrintPDF.Infrastructure.Shared.Services
 {
-    public class HtmlToPdfService
+    public class HtmlToPdfService : IHtmlToPdfService
     {
         private readonly IBrowser _browser;
         private readonly PdfOptions _pdfOptions;

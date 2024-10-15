@@ -8,7 +8,7 @@
             services.AddTransient<IDateTimeService, DateTimeService>();
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IMockService, MockService>();
-            services.AddSingleton(new HtmlToPdfService());
+            services.AddSingleton<IHtmlToPdfService, HtmlToPdfService>();
         }
     }
 }
