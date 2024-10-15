@@ -189,8 +189,8 @@ namespace NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepa
                 SkillGrades = skillGrades
             };
 
-            //var htmlContent = await RenderRazorViewToString(viewModel);
-            var htmlContent = await RenderRazorViewToString(certificate);
+            var htmlContent = await RenderRazorViewToString2(viewModel);
+            // var htmlContent = await RenderRazorViewToString(certificate);
             var pdfContent = await _htmlToPdfService.ToByteArray(htmlContent);
 
             //return viewModel;
@@ -214,6 +214,44 @@ namespace NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepa
                 if (viewResult.View == null)
                 {
                     throw new ArgumentNullException($"View 'Views/CertificateTemplate' not found.");
+                }
+
+                var viewDictionary = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary())
+                {
+                    Model = model
+                };
+
+                var viewContext = new ViewContext(
+                    actionContext,
+                    viewResult.View,
+                    viewDictionary,
+                    new TempDataDictionary(actionContext.HttpContext, tempDataProvider),
+                    sw,
+                    new HtmlHelperOptions()
+                );
+
+                await viewResult.View.RenderAsync(viewContext);
+                return sw.ToString();
+            }
+        }
+
+        public async Task<string> RenderRazorViewToString2(IEnumerable<GetDepartmentsViewModel> model)
+        {
+            var viewEngine = _serviceProvider.GetRequiredService<IRazorViewEngine>();
+            var tempDataProvider = _serviceProvider.GetRequiredService<ITempDataProvider>();
+            var actionContext = new ActionContext(
+                new DefaultHttpContext { RequestServices = _serviceProvider },
+                new RouteData(),
+                new ActionDescriptor()
+            );
+
+            using (var sw = new StringWriter())
+            {
+                var viewResult = viewEngine.GetView("~/Views/Department.cshtml", "~/Views/Department.cshtml", true);
+
+                if (viewResult.View == null)
+                {
+                    throw new ArgumentNullException($"View 'Views/Department.cshtml' not found.");
                 }
 
                 var viewDictionary = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary())
