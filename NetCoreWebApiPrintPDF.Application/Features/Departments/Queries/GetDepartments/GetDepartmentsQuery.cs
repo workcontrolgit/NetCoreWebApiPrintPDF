@@ -68,21 +68,6 @@
 
             // automap to ViewModel
             var viewModel = _mapper.Map<IEnumerable<GetDepartmentsViewModel>>(data);
-            // Create a list of SkillGrades (you need to define SkillGrade class or use existing one)
-            List<SkillGrade> skillGrades = new List<SkillGrade>
-        {
-            new SkillGrade { SkillName = "Forehand", Grade = "A" },
-            new SkillGrade { SkillName = "Backhand", Grade = "B" }
-        };
-
-            // Initialize the CertificateViewModel
-            var certificate = new Certificate
-            {
-                StudentName = "John Doe",
-                CoachName = "Fuji Nguyen",
-                EvaluationDate = DateTime.Now,
-                SkillGrades = skillGrades
-            };
 
             var htmlContent = await _razorViewToStringRenderer.RenderViewToStringAsync("~/Views/Department.cshtml", viewModel);
 

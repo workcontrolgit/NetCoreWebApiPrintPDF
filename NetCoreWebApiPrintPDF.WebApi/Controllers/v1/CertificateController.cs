@@ -1,17 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.AspNetCore.Routing;
-using NetCoreWebApiPrintPDF.Application.Helpers;
+﻿using NetCoreWebApiPrintPDF.Application.Helpers;
 using NetCoreWebApiPrintPDF.Application.Interfaces;
 using NetCoreWebApiPrintPDF.Domain.Entities;
-using PdfSharpCore;
-using PdfSharpCore.Pdf;
-using System.IO;
 using System.Threading;
-using TheArtOfDev.HtmlRenderer.PdfSharp;
 
 namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
 {
@@ -29,38 +19,40 @@ namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
             _razorViewToStringRenderer = razorViewToStringRenderer;
         }
 
-        [HttpPost("GenerateCertificate")]
-        public async Task<IActionResult> GenerateCertificate([FromBody] Certificate model, CancellationToken cancellationToken)
-        {
-            //var htmlContent = await RenderRazorViewToString(model);
-            var htmlContent = await _razorViewToStringRenderer.RenderViewToStringAsync("~/Views/CertificateTemplate.cshtml", model);
-            var pdfBytes = GeneratePdfFromHtml(htmlContent);
-
-            return File(pdfBytes, "application/pdf", $"{model.StudentName}_certificate.pdf");
-        }
-
         [HttpPost("PrintPdf")]
         public async Task<FileResult> PrintPdf([FromBody] Certificate model, CancellationToken cancellationToken)
         {
-            // var htmlContent = await RenderRazorViewToString(model);
-            var htmlContent = await _razorViewToStringRenderer.RenderViewToStringAsync("~/Views/CertificateTemplate.cshtml", model);
+            var sampleModel = CreateSampleCertificate();
+
+            var htmlContent = await _razorViewToStringRenderer.RenderViewToStringAsync("~/Views/CertificateTemplate.cshtml", sampleModel);
             var pdfContent = await _htmlToPdfService.ToByteArray(htmlContent);
-            return File(pdfContent, "application/pdf", $"{model.StudentName}_certificate.pdf");
+            return File(pdfContent, "application/pdf", $"{sampleModel.StudentName}_certificate.pdf");
         }
 
-        [NonAction]
-        public byte[] GeneratePdfFromHtml(string htmlContent)
+        private static Certificate CreateSampleCertificate()
         {
-            var document = new PdfDocument();
+            List<SkillGrade> skillGrades = CreateSampleSkillGrades();
 
-            PdfGenerator.AddPdfPages(document, htmlContent, PageSize.A4);
-
-            using (var stream = new MemoryStream())
+            // Initialize the Certificate
+            var certificate = new Certificate
             {
-                document.Save(stream, false);
-                return stream.ToArray();
-            }
+                StudentName = "John Doe",
+                CoachName = "Fuji Nguyen",
+                EvaluationDate = DateTime.Now,
+                SkillGrades = skillGrades
+            };
+            // Return the certificate
+            return certificate;
         }
 
+        private static List<SkillGrade> CreateSampleSkillGrades()
+        {
+            // Create a list of SkillGrades (you need to define SkillGrade class or use existing one)
+            return new List<SkillGrade>
+        {
+            new SkillGrade { SkillName = "Forehand", Grade = "A" },
+            new SkillGrade { SkillName = "Backhand", Grade = "B" }
+        };
+        }
     }
 }
