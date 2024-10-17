@@ -4,6 +4,6 @@
     {
         Task<byte[]> ToByteArray(string htmlContent);
 
-        Task ToFile(string htmlContent, string outputFilePath);
+        //Task ToFile(string htmlContent, string outputFilePath);
     }
 }

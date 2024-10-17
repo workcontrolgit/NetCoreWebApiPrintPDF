@@ -12,7 +12,7 @@
         public async Task<FileResult> Export([FromQuery] GetDepartmentsQuery filter)
         {
             var result = await Mediator.Send(filter);
-            return File(result, "application/pdf", "certificate.pdf");
+            return File(result, "application/pdf", "DepartmentList.pdf");
         }
     }
 }

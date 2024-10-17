@@ -20,7 +20,8 @@ namespace NetCoreWebApiPrintPDF.Infrastructure.Shared.Services
 
             _pdfOptions = new PdfOptions
             {
-                Format = PaperFormat.A4,
+                Format = PaperFormat.A4,  // Keep the format as A4
+                Landscape = true,         // Set landscape mode to true
                 MarginOptions = new MarginOptions
                 {
                     Top = "10mm",
@@ -31,16 +32,16 @@ namespace NetCoreWebApiPrintPDF.Infrastructure.Shared.Services
             };
         }
 
-        public async Task ToFile(string htmlContent, string outputFilePath)
-        {
-            using var page = await _browser.NewPageAsync();
+        //public async Task ToFile(string htmlContent, string outputFilePath)
+        //{
+        //    using var page = await _browser.NewPageAsync();
 
-            await page.SetContentAsync(htmlContent);
+        //    await page.SetContentAsync(htmlContent);
 
-            await page.PdfAsync(outputFilePath, _pdfOptions);
+        //    await page.PdfAsync(outputFilePath, _pdfOptions);
 
-            await page.CloseAsync();
-        }
+        //    await page.CloseAsync();
+        //}
 
         public async Task<byte[]> ToByteArray(string htmlContent)
         {

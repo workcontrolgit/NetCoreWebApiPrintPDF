@@ -51,8 +51,4 @@
     <ProjectReference Include="..\NetCoreWebApiPrintPDF.Infrastructure.Shared\NetCoreWebApiPrintPDF.Infrastructure.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logs\Error\" />
-  </ItemGroup>
-
 </Project>
