@@ -1,5 +1,4 @@
-﻿using NetCoreWebApiPrintPDF.Application.Helpers;
-using NetCoreWebApiPrintPDF.Application.Interfaces;
+﻿using NetCoreWebApiPrintPDF.Application.Interfaces;
 using NetCoreWebApiPrintPDF.Domain.Entities;
 using System.Threading;
 
@@ -10,9 +9,9 @@ namespace NetCoreWebApiPrintPDF.WebApi.Controllers.v1
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IHtmlToPdfService _htmlToPdfService;
-        private readonly RazorViewToStringRenderer _razorViewToStringRenderer;
+        private readonly IRazorViewToStringRenderer _razorViewToStringRenderer;
 
-        public CertificateController(IServiceProvider serviceProvider, IHtmlToPdfService htmlToPdfService, RazorViewToStringRenderer razorViewToStringRenderer)
+        public CertificateController(IServiceProvider serviceProvider, IHtmlToPdfService htmlToPdfService, IRazorViewToStringRenderer razorViewToStringRenderer)
         {
             _serviceProvider = serviceProvider;
             _htmlToPdfService = htmlToPdfService;

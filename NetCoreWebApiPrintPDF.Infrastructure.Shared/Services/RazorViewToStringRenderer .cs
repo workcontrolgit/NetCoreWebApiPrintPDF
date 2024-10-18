@@ -16,7 +16,9 @@ namespace NetCoreWebApiPrintPDF.Infrastructure.Shared.Services
         private readonly ITempDataProvider _tempDataProvider;
         private readonly IServiceProvider _serviceProvider;
 
-        public RazorViewToStringRenderer(IRazorViewEngine viewEngine, ITempDataProvider tempDataProvider, IServiceProvider serviceProvider)
+        public RazorViewToStringRenderer(IRazorViewEngine viewEngine,
+            ITempDataProvider tempDataProvider,
+            IServiceProvider serviceProvider)
         {
             _viewEngine = viewEngine;
             _tempDataProvider = tempDataProvider;
@@ -25,24 +27,41 @@ namespace NetCoreWebApiPrintPDF.Infrastructure.Shared.Services
 
         public async Task<string> RenderViewToStringAsync<TModel>(string viewName, TModel model)
         {
-            var actionContext = new ActionContext(HttpContext, RouteData, new ActionDescriptor());
+            var actionContext = GetActionContext();
+            var viewResult = _viewEngine.GetView(string.Empty, viewName, isMainPage: true);
 
-            var view = _viewEngine.FindView(actionContext, viewName, false).View;
+            if (viewResult.View == null)
+            {
+                throw new ArgumentNullException($"View '{viewName}' not found.");
+            }
 
             using (var sw = new StringWriter())
             {
+                var viewDictionary = new ViewDataDictionary<TModel>(
+                    new EmptyModelMetadataProvider(),
+                    new ModelStateDictionary())
+                {
+                    Model = model
+                };
+
                 var viewContext = new ViewContext(
                     actionContext,
-                    view,
-                    new ViewDataDictionary<TModel>(new EmptyModelMetadataProvider(), new ModelStateDictionary()) { Model = model },
-                    new TempDataDictionary(HttpContext, _tempDataProvider),
+                    viewResult.View,
+                    viewDictionary,
+                    new TempDataDictionary(actionContext.HttpContext, _tempDataProvider),
                     sw,
                     new HtmlHelperOptions()
                 );
 
-                await view.RenderAsync(viewContext);
+                await viewResult.View.RenderAsync(viewContext);
                 return sw.ToString();
             }
+        }
+
+        private ActionContext GetActionContext()
+        {
+            var httpContext = new DefaultHttpContext { RequestServices = _serviceProvider };
+            return new ActionContext(httpContext, new RouteData(), new ActionDescriptor());
         }
     }
 }

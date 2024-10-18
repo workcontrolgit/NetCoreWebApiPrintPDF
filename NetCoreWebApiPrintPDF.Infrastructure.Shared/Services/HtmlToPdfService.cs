@@ -32,17 +32,6 @@ namespace NetCoreWebApiPrintPDF.Infrastructure.Shared.Services
             };
         }
 
-        //public async Task ToFile(string htmlContent, string outputFilePath)
-        //{
-        //    using var page = await _browser.NewPageAsync();
-
-        //    await page.SetContentAsync(htmlContent);
-
-        //    await page.PdfAsync(outputFilePath, _pdfOptions);
-
-        //    await page.CloseAsync();
-        //}
-
         public async Task<byte[]> ToByteArray(string htmlContent)
         {
             using var page = await _browser.NewPageAsync();

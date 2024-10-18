@@ -1,33 +1,40 @@
 ﻿namespace NetCoreWebApiPrintPDF.Application.Features.Departments.Queries.GetDepartments
 {
     /// <summary>
-    /// GetAllDepartmentsQuery - handles media IRequest
+    /// GetAllDepartmentsPrint - handles media IRequest
     /// BaseRequestParameter - contains paging parameters
     /// To add filter/search parameters, add search properties to the body of this class
     /// </summary>
-    public class GetDepartmentsQuery : ListParameter, IRequest<IEnumerable<GetDepartmentsViewModel>>
+    public class GetDepartmentsPrint : ListParameter, IRequest<byte[]>
     {
     }
 
-    public class GetAllDepartmentsQueryHandler : IRequestHandler<GetDepartmentsQuery, IEnumerable<GetDepartmentsViewModel>>
+    public class GetAllDepartmentsPrintHandler : IRequestHandler<GetDepartmentsPrint, byte[]>
     {
         private readonly IDepartmentRepositoryAsync _repository;
         private readonly IModelHelper _modelHelper;
         private readonly IMapper _mapper;
+        private readonly IServiceProvider _serviceProvider;
+        private readonly IHtmlToPdfService _htmlToPdfService;
+
+        private readonly IRazorViewToStringRenderer _razorViewToStringRenderer;
 
         /// <summary>
-        /// Constructor for GetAllDepartmentsQueryHandler class.
+        /// Constructor for GetAllDepartmentsPrintHandler class.
         /// </summary>
         /// <param name="repository">IDepartmentRepositoryAsync object.</param>
         /// <param name="modelHelper">IModelHelper object.</param>
         /// <returns>
-        /// GetAllDepartmentsQueryHandler object.
+        /// GetAllDepartmentsPrintHandler object.
         /// </returns>
-        public GetAllDepartmentsQueryHandler(IDepartmentRepositoryAsync repository, IModelHelper modelHelper, IMapper mapper)
+        public GetAllDepartmentsPrintHandler(IDepartmentRepositoryAsync repository, IModelHelper modelHelper, IMapper mapper, IServiceProvider serviceProvider, IHtmlToPdfService htmlToPdfService, IRazorViewToStringRenderer razorViewToStringRenderer)
         {
             _repository = repository;
             _modelHelper = modelHelper;
             _mapper = mapper;
+            _serviceProvider = serviceProvider;
+            _htmlToPdfService = htmlToPdfService;
+            _razorViewToStringRenderer = razorViewToStringRenderer;
         }
 
         /// <summary>
@@ -36,7 +43,7 @@
         /// <param name="request">The GetDepartmentsQuery request.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A PagedResponse containing the requested data.</returns>
-        public async Task<IEnumerable<GetDepartmentsViewModel>> Handle(GetDepartmentsQuery request, CancellationToken cancellationToken)
+        public async Task<byte[]> Handle(GetDepartmentsPrint request, CancellationToken cancellationToken)
         {
             string fields = _modelHelper.GetModelFields<GetDepartmentsViewModel>();
             string defaultOrderByColumn = "Name";
@@ -62,7 +69,11 @@
             // automap to ViewModel
             var viewModel = _mapper.Map<IEnumerable<GetDepartmentsViewModel>>(data);
 
-            return viewModel;
+            var htmlContent = await _razorViewToStringRenderer.RenderViewToStringAsync("~/Views/Department.cshtml", viewModel);
+
+            var pdfContent = await _htmlToPdfService.ToByteArray(htmlContent);
+
+            return pdfContent;
         }
     }
 }

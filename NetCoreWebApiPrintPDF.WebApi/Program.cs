@@ -1,5 +1,3 @@
-using NetCoreWebApiPrintPDF.Application.Helpers;
-
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -35,9 +33,6 @@ try
 
     // Register IHttpContextAccessor
     builder.Services.AddHttpContextAccessor();
-
-    // Register RazorViewToStringRenderer
-    builder.Services.AddScoped<RazorViewToStringRenderer>();
 
     var app = builder.Build();
 

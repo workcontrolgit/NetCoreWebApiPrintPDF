@@ -10,7 +10,7 @@ using System.IO;
 
 namespace NetCoreWebApiPrintPDF.Application.Helpers
 {
-    public class RazorViewToStringRenderer
+    public class RazorViewToStringRenderer: IRazorViewToStringRenderer
     {
         private readonly IRazorViewEngine _viewEngine;
         private readonly ITempDataProvider _tempDataProvider;
