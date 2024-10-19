@@ -1,6 +1,6 @@
-﻿namespace NetCoreWebApiPrintPDF.Application.Features.Employees.Queries.GetEmployees
+﻿namespace NetCoreWebApiPrintPDF.Application.Features.Employees.Queries.ExportEmployees
 {
-    public class GetEmployeesViewModel
+    public class ExportEmployeesViewModel
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }

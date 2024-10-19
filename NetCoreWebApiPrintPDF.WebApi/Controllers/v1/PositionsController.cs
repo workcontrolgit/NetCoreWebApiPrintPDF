@@ -3,7 +3,6 @@
     [ApiVersion("1.0")]
     public class PositionsController : BaseApiController
     {
-
         /// <summary>
         /// Gets a list of positions based on the provided filter.
         /// </summary>
@@ -21,7 +20,6 @@
         /// <param name="id">The Id of the position.</param>
         /// <returns>The position with the specified Id.</returns>
         [HttpGet("{id}")]
-        //[Authorize]
         public async Task<IActionResult> Get(Guid id)
         {
             return Ok(await Mediator.Send(new GetPositionByIdQuery { Id = id }));
@@ -49,7 +47,6 @@
         /// <returns>The result of the command.</returns>
         [HttpPost]
         [Route("AddMock")]
-        //[Authorize]
         public async Task<IActionResult> AddMock(InsertMockPositionCommand command)
         {
             return Ok(await Mediator.Send(command));
@@ -75,7 +72,6 @@
         /// <param name="command">The command containing the updated information.</param>
         /// <returns>The updated position.</returns>
         [HttpPut("{id}")]
-        //[Authorize(Policy = AuthorizationConsts.ManagerPolicy)]
         public async Task<IActionResult> Put(Guid id, UpdatePositionCommand command)
         {
             if (id != command.Id)
@@ -91,7 +87,6 @@
         /// <param name="id">The Id of the position to delete.</param>
         /// <returns>The result of the deletion.</returns>
         [HttpDelete("{id}")]
-        //[Authorize(Policy = AuthorizationConsts.AdminPolicy)]
         public async Task<IActionResult> Delete(Guid id)
         {
             return Ok(await Mediator.Send(new DeletePositionByIdCommand { Id = id }));

@@ -1,6 +1,6 @@
-﻿namespace NetCoreWebApiPrintPDF.WebApi.Models
+﻿namespace NetCoreWebApiPrintPDF.Domain.Entities
 {
-    public class CertificateViewModel
+    public class Certificate
     {
         public string StudentName { get; set; }
         public string CoachName { get; set; }

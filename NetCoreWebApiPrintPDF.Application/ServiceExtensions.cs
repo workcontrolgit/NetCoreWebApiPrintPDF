@@ -1,13 +1,4 @@
-﻿using FluentValidation;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using NetCoreWebApiPrintPDF.Application.Behaviours;
-using NetCoreWebApiPrintPDF.Application.Helpers;
-using NetCoreWebApiPrintPDF.Application.Interfaces;
-using NetCoreWebApiPrintPDF.Domain.Entities;
-using System.Reflection;
-
-namespace NetCoreWebApiPrintPDF.Application
+﻿namespace NetCoreWebApiPrintPDF.Application
 {
     public static class ServiceExtensions
     {
@@ -20,6 +11,7 @@ namespace NetCoreWebApiPrintPDF.Application
             services.AddScoped<IDataShapeHelper<Position>, DataShapeHelper<Position>>();
             services.AddScoped<IDataShapeHelper<Employee>, DataShapeHelper<Employee>>();
             services.AddScoped<IModelHelper, ModelHelper>();
+
             // * use Scutor to register generic IDataShapeHelper interface for DI and specifying the lifetime of dependencies
             services.Scan(selector => selector
                 .FromCallingAssembly()

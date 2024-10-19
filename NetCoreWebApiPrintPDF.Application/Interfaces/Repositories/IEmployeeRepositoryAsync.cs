@@ -1,4 +1,6 @@
-﻿namespace NetCoreWebApiPrintPDF.Application.Interfaces.Repositories
+﻿using NetCoreWebApiPrintPDF.Application.Features.Employees.Queries.ExportEmployees;
+
+namespace NetCoreWebApiPrintPDF.Application.Interfaces.Repositories
 {
     /// <summary>
     /// Interface for retrieving paged employee response asynchronously.
@@ -10,6 +12,8 @@
     public interface IEmployeeRepositoryAsync : IGenericRepositoryAsync<Employee>
     {
         Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetEmployeeResponseAsync(GetEmployeesQuery requestParameters);
+
+        Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> ExportEmployeeResponseAsync(ExportEmployeesQuery requestParameters);
 
         Task<(IEnumerable<Entity> data, RecordsCount recordsCount)> GetPagedEmployeeResponseAsync(PagedEmployeesQuery requestParameters);
     }
