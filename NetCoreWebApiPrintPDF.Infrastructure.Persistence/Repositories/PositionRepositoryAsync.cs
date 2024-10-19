@@ -1,18 +1,4 @@
-﻿using LinqKit;
-using Microsoft.EntityFrameworkCore;
-using NetCoreWebApiPrintPDF.Application.Features.Positions.Queries.GetPositions;
-using NetCoreWebApiPrintPDF.Application.Interfaces;
-using NetCoreWebApiPrintPDF.Application.Interfaces.Repositories;
-using NetCoreWebApiPrintPDF.Application.Parameters;
-using NetCoreWebApiPrintPDF.Domain.Entities;
-using NetCoreWebApiPrintPDF.Infrastructure.Persistence.Contexts;
-using NetCoreWebApiPrintPDF.Infrastructure.Persistence.Repository;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Dynamic.Core;
-using System.Threading.Tasks;
-
-namespace NetCoreWebApiPrintPDF.Infrastructure.Persistence.Repositories
+﻿namespace NetCoreWebApiPrintPDF.Infrastructure.Persistence.Repositories
 {
     public class PositionRepositoryAsync : GenericRepositoryAsync<Position>, IPositionRepositoryAsync
     {

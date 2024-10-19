@@ -2,7 +2,6 @@
 {
     public class MockService : IMockService
     {
-
         public List<Position> GetPositions(int rowCount, IEnumerable<Department> departments, IEnumerable<SalaryRange> salaryRanges)
         {
             var faker = new PositionInsertBogusConfig(departments, salaryRanges);

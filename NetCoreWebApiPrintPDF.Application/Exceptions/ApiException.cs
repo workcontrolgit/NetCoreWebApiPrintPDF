@@ -1,6 +1,4 @@
-﻿
-
-namespace NetCoreWebApiPrintPDF.Application.Exceptions
+﻿namespace NetCoreWebApiPrintPDF.Application.Exceptions
 {
     public class ApiException : Exception
     {

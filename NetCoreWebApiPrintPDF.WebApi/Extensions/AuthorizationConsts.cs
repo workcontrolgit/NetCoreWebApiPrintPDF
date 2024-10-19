@@ -1,5 +1,4 @@
-﻿
-namespace NetCoreWebApiPrintPDF.WebApi.Extensions
+﻿namespace NetCoreWebApiPrintPDF.WebApi.Extensions
 {
     public class AuthorizationConsts
     {

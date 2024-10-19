@@ -2,7 +2,6 @@
 {
     public static class ServiceExtensions
     {
-
         public static void AddSwaggerExtension(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -58,7 +57,7 @@
                 ;
         }
 
-        //Configure CORS to allow any origin, header and method. 
+        //Configure CORS to allow any origin, header and method.
         //Change the CORS policy based on your requirements.
         //More info see: https://docs.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-3.0
 
@@ -99,20 +98,21 @@
                 // can also be used to control the format of the API version in route templates
                 options.SubstituteApiVersionInUrl = true;
             }); // Nuget Package: Asp.Versioning.Mvc.ApiExplorer
-
         }
+
         public static void AddApiVersioningExtension(this IServiceCollection services)
         {
             services.AddApiVersioning(config =>
             {
                 // Specify the default API Version as 1.0
                 config.DefaultApiVersion = new ApiVersion(1, 0);
-                // If the client hasn't specified the API version in the request, use the default API version number 
+                // If the client hasn't specified the API version in the request, use the default API version number
                 config.AssumeDefaultVersionWhenUnspecified = true;
                 // Advertise the API versions supported for the particular endpoint
                 config.ReportApiVersions = true;
             });
         }
+
         public static void AddJWTAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -123,6 +123,7 @@
                     options.Audience = configuration["Sts:Audience"];
                 });
         }
+
         public static void AddAuthorizationPolicies(this IServiceCollection services, IConfiguration configuration)
         {
             string admin = configuration["ApiRoles:AdminRole"],
@@ -135,7 +136,5 @@
                 options.AddPolicy(AuthorizationConsts.EmployeePolicy, policy => policy.RequireRole(employee, manager, admin));
             });
         }
-
     }
-
 }
