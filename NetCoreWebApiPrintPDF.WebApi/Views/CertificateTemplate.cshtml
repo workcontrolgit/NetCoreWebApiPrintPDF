@@ -21,6 +21,7 @@
             border-radius: 10px;
             background-color: white;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .title {
@@ -58,7 +59,12 @@
 
         .logo img {
             width: 120px;
-            margin-bottom: 20px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
         }
 
         .signature img {
@@ -70,9 +76,8 @@
     <div class="container mt-5">
         <div class="certificate-container p-5">
             <!-- Logo Section -->
-            <div class="text-center logo mb-4">
+            <div class="logo">
                 <img src="@($"{baseUrl}/images/logo.jpg")" alt="Pickleball Logo">
-                @* <img src="https://localhost:44378/images/logo.jpg" alt="Pickleball Logo"> *@
             </div>
 
             <!-- Title and Subtitle -->
@@ -106,9 +111,7 @@
 
             <!-- Signature Section -->
             <div class="signature">
-                <p>Coach: <strong>@Model.CoachName</strong></p>
-                <!-- Signature Image Placeholder -->
-                <img src="@($"{baseUrl}/images/logo.jpg")" alt="Signature">
+                <p>Signature: <strong>@Model.CoachName</strong></p>
             </div>
         </div>
     </div>
