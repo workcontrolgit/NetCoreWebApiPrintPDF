@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Services\RazorViewToStringRenderer .cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoBogus" Version="2.13.1" />
     <PackageReference Include="Bogus" Version="35.6.0" />
     <PackageReference Include="MailKit" Version="4.7.1.1" />

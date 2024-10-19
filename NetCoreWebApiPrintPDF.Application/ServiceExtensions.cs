@@ -11,7 +11,6 @@
             services.AddScoped<IDataShapeHelper<Position>, DataShapeHelper<Position>>();
             services.AddScoped<IDataShapeHelper<Employee>, DataShapeHelper<Employee>>();
             services.AddScoped<IModelHelper, ModelHelper>();
-            services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
 
             // * use Scutor to register generic IDataShapeHelper interface for DI and specifying the lifetime of dependencies
             services.Scan(selector => selector

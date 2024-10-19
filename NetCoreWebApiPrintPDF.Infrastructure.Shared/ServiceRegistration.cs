@@ -9,6 +9,7 @@
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IMockService, MockService>();
             services.AddSingleton<IHtmlToPdfService, HtmlToPdfService>();
+            services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
         }
     }
 }
